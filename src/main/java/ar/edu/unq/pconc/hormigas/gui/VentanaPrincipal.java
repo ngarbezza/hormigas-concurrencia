@@ -5,11 +5,7 @@ import ar.edu.unq.pconc.hormigas.model.herramientas.Color;
 import ar.edu.unq.pconc.hormigas.model.herramientas.Direccion;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class VentanaPrincipal extends JFrame {
@@ -20,51 +16,41 @@ public class VentanaPrincipal extends JFrame {
 	private JButton surButton, oesteButton, esteButton, norteButton;
 
 	public VentanaPrincipal() {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				
-				setTitle("Guerra de hormigas");
-				setSize(new Dimension(800, 500));
-				setLocationRelativeTo(null);
-				setVisible(true);
-				initialize();
-				crearTabla();
-				crearBotones();
-				crearListas();
-				crearDirecciones();
-				agregarComponentes();
-			}
-		});
+		SwingUtilities.invokeLater(() -> {
+            setTitle("Guerra de hormigas");
+            setSize(new Dimension(800, 500));
+            setLocationRelativeTo(null);
+            setVisible(true);
+            initialize();
+            crearTabla();
+            crearBotones();
+            crearListas();
+            crearDirecciones();
+            agregarComponentes();
+        });
 	}
 
 	protected void crearListas() {
-		hormigasJugador1 = new JList(new Vector<Hormiga>(Juego.getInstance().getJugador1().getHormigas()));
-		hormigasJugador2 = new JList(new Vector<Hormiga>(Juego.getInstance().getJugador2().getHormigas()));
+		hormigasJugador1 = new JList(new Vector<>(Juego.getInstance().getJugador1().getHormigas()));
+		hormigasJugador2 = new JList(new Vector<>(Juego.getInstance().getJugador2().getHormigas()));
 		
-		hormigasJugador1.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {	
-				if (hormigasJugador1.getSelectedValue() != null) {
-					hormigasJugador2.clearSelection();
-					activarBotones(true);
-				} else {
-					activarBotones(hormigasJugador2.getSelectedValue() == null);
-				}
-			}
-		});
+		hormigasJugador1.addListSelectionListener(e -> {
+            if (hormigasJugador1.getSelectedValue() != null) {
+                hormigasJugador2.clearSelection();
+                activarBotones(true);
+            } else {
+                activarBotones(hormigasJugador2.getSelectedValue() == null);
+            }
+        });
 		
-		hormigasJugador2.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (hormigasJugador2.getSelectedValue() != null) {
-					hormigasJugador1.clearSelection();
-					activarBotones(true);
-				} else {
-					activarBotones(hormigasJugador1.getSelectedValue() == null);
-				}
-			}
-		});
+		hormigasJugador2.addListSelectionListener(e -> {
+            if (hormigasJugador2.getSelectedValue() != null) {
+                hormigasJugador1.clearSelection();
+                activarBotones(true);
+            } else {
+                activarBotones(hormigasJugador1.getSelectedValue() == null);
+            }
+        });
 	}
 
 	protected void activarBotones(boolean b) {
@@ -84,30 +70,10 @@ public class VentanaPrincipal extends JFrame {
 		surButton = new JButton("vv");
 		surButton.setEnabled(false);
 	
-		norteButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getHormigaActual().setDireccion(Direccion.NORTE);
-			}
-		});
-		esteButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getHormigaActual().setDireccion(Direccion.ESTE);
-			}
-		});
-		oesteButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getHormigaActual().setDireccion(Direccion.OESTE);
-			}
-		});
-		surButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getHormigaActual().setDireccion(Direccion.SUR);
-			}
-		});
+		norteButton.addActionListener(e -> getHormigaActual().setDireccion(Direccion.NORTE));
+		esteButton.addActionListener(e -> getHormigaActual().setDireccion(Direccion.ESTE));
+		oesteButton.addActionListener(e -> getHormigaActual().setDireccion(Direccion.OESTE));
+		surButton.addActionListener(e -> getHormigaActual().setDireccion(Direccion.SUR));
 	}
 
 	/**
@@ -184,20 +150,12 @@ public class VentanaPrincipal extends JFrame {
 	
 	protected void crearBotones() {
 		botonComenzar = new JButton("Comenzar");
-		botonComenzar.addActionListener(new ActionListener() {	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Juego.getInstance().comenzar();
-				botonReset.setEnabled(false);
-			}
-		});
+		botonComenzar.addActionListener(e -> {
+            Juego.getInstance().comenzar();
+            botonReset.setEnabled(false);
+        });
 		botonReset = new JButton("Reset");
-		botonReset.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				reset();
-			}
-		});
+		botonReset.addActionListener(e -> reset());
 	}
 	
 	/**

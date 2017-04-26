@@ -1,11 +1,10 @@
 package ar.edu.unq.pconc.hormigas.model.herramientas;
 
-
 import java.util.List;
 import java.util.Vector;
 
 public class ListaSemaforo {
-	private List<Par> xs = new Vector<Par>();
+	private List<Par> xs = new Vector<>();
 	
 	/**
 	 * Agrega los 3 elementos a la lista
