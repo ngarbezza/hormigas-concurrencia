@@ -1,33 +1,16 @@
-package gui;
+package ar.edu.unq.pconc.hormigas.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import ar.edu.unq.pconc.hormigas.model.*;
+import ar.edu.unq.pconc.hormigas.model.herramientas.Color;
+import ar.edu.unq.pconc.hormigas.model.herramientas.Direccion;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import model.Hormiga;
-import model.Juego;
-import model.Jugador;
-import model.Objeto;
-import model.Tablero;
-import model.herramientas.Color;
-import model.herramientas.Direccion;
 
 public class VentanaPrincipal extends JFrame {
 	
@@ -254,7 +237,7 @@ public class VentanaPrincipal extends JFrame {
 		Tablero t = new Tablero();
 		Juego juego = Juego.getInstance();
 		juego.setTablero(t);
-		Jugador 
+		Jugador
 			j1 = new Jugador(),
 			j2 = new Jugador();
 		juego.setJugador1(j1);

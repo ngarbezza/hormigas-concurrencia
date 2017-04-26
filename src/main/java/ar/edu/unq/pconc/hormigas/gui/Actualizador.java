@@ -1,7 +1,7 @@
-package gui;
+package ar.edu.unq.pconc.hormigas.gui;
 
-import model.Objeto;
-import model.herramientas.Color;
+import ar.edu.unq.pconc.hormigas.model.Objeto;
+import ar.edu.unq.pconc.hormigas.model.herramientas.Color;
 
 public class Actualizador {
 	
